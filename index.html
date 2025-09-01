@@ -127,11 +127,11 @@ const map = new ol.Map({
 
   // Countries and GMBA layers
   const countriesLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({ url:'countries.geojson', format:new ol.format.GeoJSON() }),
+  source: new ol.source.Vector({ url:'countries_web.geojson', format:new ol.format.GeoJSON() }),
   style: new ol.style.Style({ stroke:new ol.style.Stroke({color:'#ffffff', width:2}), fill:new ol.style.Fill({color:'rgba(200,200,200,0.1)'}) })
 });
 const gmbaLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({ url:'gmba_v2.geojson', format:new ol.format.GeoJSON() }),
+  source: new ol.source.Vector({ url:'gmba_v2_web.geojson', format:new ol.format.GeoJSON() }),
   style: new ol.style.Style({ stroke:new ol.style.Stroke({color:'#008B7A', width:2}), fill:new ol.style.Fill({color:'rgba(0,139,122,0.1)'}) })
 });
   map.addLayer(countriesLayer);
@@ -211,7 +211,7 @@ const hideAllLayers = () => {
   const layerNames = [
     'ACTRIS','African_Mountain_Research_Foundation','Alpine_Convention_Air_Quality','Ausangate','BMKG_Indonesia',
     'CAMELS_AUS','CAMELS_BR','CAMELS_CH','CAMELS_CL','CAMELS_DE','CAMELS_ES','CAMELS_GB','CAMELS_IND','CAMELS_SE',
-    'CAMLES_FR','CAMON','CA_Discharge','CH_Q_Private_and_Cantonal','CODOS','COSMOS_Europe','Canada_Climate',
+    'CAMELS_FR','CAMON','CA_Discharge','CH_Q_Private_and_Cantonal','CODOS','COSMOS_Europe','Canada_Climate',
     'Canada_Hydrometric','Central_Sierra_Snow_Laboratory','China_High_Elevation_Stations','DEIMS_SDR','DHM_Nepal',
     'DMC_Chile','EEAR_Clim','EUROPAREGION_EUREGIO','Ethiopian_Meteorological_Institute','GAW','GHCNd','GHCNh',
     'GLORIA_Andes','GLORIA_Great_Basin','GRDC','GWF_Observatories','Heihe_River_Basin',
