@@ -150,10 +150,13 @@ const createMountainLayer = (layerName) => {
     
     if (!isVisible) {
       visibleLayers.add(layerName);
+      // Show this layer name in the dropdown
+      updateDropdownDisplay(layerName);
     } else {
       visibleLayers.delete(layerName);
+      // Reset to default when hiding
+      updateDropdownDisplay('');
     }
-    //updateDropdownOptions();
     return;
   }
 
@@ -174,8 +177,27 @@ const createMountainLayer = (layerName) => {
   mountainLayers[layerName] = layer;
   visibleLayers.add(layerName);
   map.addLayer(layer);
-  updateDropdownOptions();
+  
+  // Show this layer name in the dropdown
+  updateDropdownDisplay(layerName);
+  
   console.log('Added layer:', layerName);
+};
+
+const updateDropdownDisplay = (layerName) => {
+  const layerSelect = document.getElementById('layer-select');
+  if (layerName) {
+    // Find the option and set it as selected
+    for (let i = 0; i < layerSelect.options.length; i++) {
+      if (layerSelect.options[i].value === layerName) {
+        layerSelect.selectedIndex = i;
+        break;
+      }
+    }
+  } else {
+    // Reset to default
+    layerSelect.selectedIndex = 0;
+  }
 };
 
 const selectAllLayers = () => {
@@ -188,11 +210,30 @@ const selectAllLayers = () => {
         visibleLayers.add(layerName);
       } else {
         // Layer doesn't exist, create it
-        createMountainLayer(layerName);
+        const vectorSource = new ol.source.Vector({
+          url: `${layerName}.geojson`,
+          format: new ol.format.GeoJSON()
+        });
+
+        const color = randomColor();
+        const layer = new ol.layer.Vector({
+          source: vectorSource,
+          style: new ol.style.Style({
+            image: new ol.style.Circle({ radius: 4, fill: new ol.style.Fill({ color }), stroke: new ol.style.Stroke({ color:'#fff', width:1 }) })
+          })
+        });
+
+        mountainLayers[layerName] = layer;
+        visibleLayers.add(layerName);
+        map.addLayer(layer);
       }
     }
   });
-  updateDropdownOptions();
+  
+  // Reset dropdown to show "SELECT ALL" was chosen
+  const layerSelect = document.getElementById('layer-select');
+  layerSelect.selectedIndex = 1; // SELECT ALL option
+  
   console.log('Selected all layers');
 };
 
@@ -203,7 +244,11 @@ const hideAllLayers = () => {
     }
   });
   visibleLayers.clear();
-  updateDropdownOptions();
+  
+  // Reset dropdown to show "HIDE ALL" was chosen
+  const layerSelect = document.getElementById('layer-select');
+  layerSelect.selectedIndex = 2; // HIDE ALL option
+  
   console.log('Hidden all layers');
 };
 
@@ -232,26 +277,6 @@ const hideAllLayers = () => {
     option.textContent = name.replace(/_/g, ' ');
     layerSelect.appendChild(option);
   });
-
-const updateDropdownOptions = () => {
-  const layerSelect = document.getElementById('layer-select');
-  // Clear existing options except the first three (default, Select All, Hide All)
-  while (layerSelect.children.length > 3) {
-    layerSelect.removeChild(layerSelect.lastChild);
-  }
-  
-  // Re-add all layer options with tick marks for visible layers
-  layerNames.forEach(name => {
-    const option = document.createElement('option');
-    option.value = name;
-    const isVisible = visibleLayers.has(name);
-    option.textContent = (isVisible ? '✓ ' : '') + name.replace(/_/g, ' ');
-    layerSelect.appendChild(option);
-  });
-  
-  // Reset selection to default
-  layerSelect.selectedIndex = 0;
-};
 
   layerSelect.addEventListener('change', e => {
     if (e.target.value === 'SELECT_ALL') {
