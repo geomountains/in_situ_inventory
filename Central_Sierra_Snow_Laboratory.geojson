@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "Central_Sierra_Snow_Laboratory",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "GEO_Mountains_v3_I​D": 156959, "Name": "Central Sierra Snow Laboratory", "Latitude": 39.3255, "Longitude": -120.3674, "Elevation": "2118.4", "Country": "United States", "Mountain_Range_GMBA_v2": "Sierra Nevada", "Purpose": null, "Type": null, "Operating_Organisation": null, "Site_Description_or_Data_Access": "https://vcresearch.berkeley.edu/research-unit/central-sierra-snow-lab; https://cssl.berkeley.edu", "Contact_Email": null, "Variables_Measured": null, "Record_Start": null, "Record_End": null, "Frequency": null, "Methods_Protocols": null, "Instrumentation": null, "Open_Data": "Yes", "Associated_Publications": null, "Local_Network": null, "Main_Network": "Central Sierra Snow Laboratory", "Comments": "Multiple Stations" }, "geometry": { "type": "Point", "coordinates": [ -120.3674, 39.3255 ] } }
+]
+}
