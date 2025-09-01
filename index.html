@@ -127,11 +127,11 @@ const map = new ol.Map({
 
   // Countries and GMBA layers
   const countriesLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({ url:'countries_web.geojson', format:new ol.format.GeoJSON() }),
+  source: new ol.source.Vector({ url:'countries_simplified.geojson', format:new ol.format.GeoJSON() }),
   style: new ol.style.Style({ stroke:new ol.style.Stroke({color:'#ffffff', width:2}), fill:new ol.style.Fill({color:'rgba(200,200,200,0.1)'}) })
 });
 const gmbaLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({ url:'gmba_v2_web.geojson', format:new ol.format.GeoJSON() }),
+  source: new ol.source.Vector({ url:'gmba_v2_simplified.geojson', format:new ol.format.GeoJSON() }),
   style: new ol.style.Style({ stroke:new ol.style.Stroke({color:'#008B7A', width:2}), fill:new ol.style.Fill({color:'rgba(0,139,122,0.1)'}) })
 });
   map.addLayer(countriesLayer);
