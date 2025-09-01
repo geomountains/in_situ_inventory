@@ -150,8 +150,10 @@ const createMountainLayer = (layerName) => {
     
     if (!isVisible) {
       visibleLayers.add(layerName);
+      console.log('Showed layer:', layerName);
     } else {
       visibleLayers.delete(layerName);
+      console.log('Hidden layer:', layerName);
     }
     updateDropdownOptions();
     return;
