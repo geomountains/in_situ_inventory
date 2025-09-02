@@ -1,8 +1,8 @@
 {
 "type": "FeatureCollection",
-"name": "Skalnate_Pleso",
+"name": "sql_statement",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "GEO_Mountains_v3_I​D": 129609, "Name": "Skalnaté Pleso", "Latitude": 49.18938, "Longitude": 20.23398, "Elevation": "1778", "Country": "Slovakia", "Mountain_Range_GMBA_v2": "Carpathian Mountains", "Purpose": null, "Type": null, "Operating_Organisation": null, "Site_Description_or_Data_Access": "https://geo.sav.sk/en/laboratories/meteorological-observatory-skalnate-pleso/", "Contact_Email": "geofsvet@savba.sk", "Variables_Measured": null, "Record_Start": null, "Record_End": null, "Frequency": null, "Methods_Protocols": null, "Instrumentation": null, "Open_Data": null, "Associated_Publications": null, "Local_Network": null, "Main_Network": "Skalnaté Pleso", "Comments": null }, "geometry": { "type": "Point", "coordinates": [ 20.23398, 49.18938 ] } }
+{ "type": "Feature", "properties": { "GEO_Mountains_v3_ID": 129609, "Name": "Skalnaté Pleso", "Latitude": "49.18938", "Longitude": "20.23398", "Elevation": "1778", "Country": "Slovakia", "Mountain_Range_GMBA_v2": "Carpathian Mountains", "Purpose": null, "Type": null, "Operating_Organisation": null, "Site_Description_or_Data_Access": "https://geo.sav.sk/en/laboratories/meteorological-observatory-skalnate-pleso/", "Contact_Email": "geofsvet@savba.sk", "Variables_Measured": null, "Record_Start": null, "Record_End": null, "Frequency": null, "Methods_Protocols": null, "Instrumentation": "", "Open_Data": null, "Associated_Publications": null, "Local_Network": null, "Main_Network": "Skalnaté Pleso", "Comments": null }, "geometry": { "type": "Point", "coordinates": [ 20.23398, 49.18938 ] } }
 ]
 }

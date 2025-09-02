@@ -1,8 +1,8 @@
 {
 "type": "FeatureCollection",
-"name": "Mt_Washington",
+"name": "sql_statement",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "GEO_Mountains_v3_I​D": 156939, "Name": "Mount Washington Observatory", "Latitude": 44.2705, "Longitude": -71.3033, "Elevation": null, "Country": "United States", "Mountain_Range_GMBA_v2": "Appalachian Mountains", "Purpose": null, "Type": null, "Operating_Organisation": "Mount Washington Observatory", "Site_Description_or_Data_Access": "https://mountwashington.org/", "Contact_Email": null, "Variables_Measured": null, "Record_Start": null, "Record_End": null, "Frequency": null, "Methods_Protocols": null, "Instrumentation": null, "Open_Data": null, "Associated_Publications": null, "Local_Network": null, "Main_Network": "Mt. Washington", "Comments": null }, "geometry": { "type": "Point", "coordinates": [ -71.3033, 44.2705 ] } }
+{ "type": "Feature", "properties": { "GEO_Mountains_v3_ID": 156939, "Name": "Mount Washington Observatory", "Latitude": "44.2705", "Longitude": "-71.3033", "Elevation": null, "Country": "United States", "Mountain_Range_GMBA_v2": "Appalachian Mountains", "Purpose": null, "Type": null, "Operating_Organisation": "Mount Washington Observatory", "Site_Description_or_Data_Access": "https://mountwashington.org/", "Contact_Email": null, "Variables_Measured": null, "Record_Start": null, "Record_End": null, "Frequency": null, "Methods_Protocols": null, "Instrumentation": "", "Open_Data": null, "Associated_Publications": null, "Local_Network": null, "Main_Network": "Mt. Washington", "Comments": null }, "geometry": { "type": "Point", "coordinates": [ -71.3033, 44.2705 ] } }
 ]
 }
