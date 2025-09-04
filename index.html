@@ -111,6 +111,40 @@ const map = new ol.Map({
     extent: worldExtent  // restrict panning
   })
 });
+
+// Helper function to zoom to layer extent
+const zoomToLayerExtent = (layer) => {
+  const source = layer.getSource();
+  
+  // Wait for features to load if they haven't yet
+  const features = source.getFeatures();
+  if (features.length === 0) {
+    source.once('featuresloadend', () => {
+      const loadedFeatures = source.getFeatures();
+      if (loadedFeatures.length > 0) {
+        const extent = source.getExtent();
+        map.getView().fit(extent, { 
+          padding: [20, 20, 20, 20],
+          maxZoom: 10
+        });
+      }
+    });
+  } else {
+    const extent = source.getExtent();
+    map.getView().fit(extent, { 
+      padding: [20, 20, 20, 20],
+      maxZoom: 10
+    });
+  }
+};
+
+// Helper function to zoom to global extent
+const zoomToGlobalExtent = () => {
+  map.getView().fit(worldExtent, { 
+    padding: [20, 20, 20, 20]
+  });
+};
+
   // Base layers
   const osmLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
   const satelliteLayer = new ol.layer.Tile({
@@ -151,6 +185,8 @@ const createMountainLayer = (layerName) => {
     if (!isVisible) {
       visibleLayers.add(layerName);
       console.log('Showed layer:', layerName);
+      // Zoom to this layer's extent
+      zoomToLayerExtent(layer);
     } else {
       visibleLayers.delete(layerName);
       console.log('Hidden layer:', layerName);
@@ -178,6 +214,9 @@ const createMountainLayer = (layerName) => {
   map.addLayer(layer);
   updateDropdownOptions();
   console.log('Added layer:', layerName);
+  
+  // Zoom to this layer's extent
+  zoomToLayerExtent(layer);
 };
 
 const selectAllLayers = () => {
@@ -211,6 +250,9 @@ const selectAllLayers = () => {
   });
   updateDropdownOptions();
   console.log('Selected all layers');
+  
+  // Zoom to global extent when all layers are selected
+  zoomToGlobalExtent();
 };
 
 const hideAllLayers = () => {
