@@ -182,6 +182,7 @@ const gmbaLayer = new ol.layer.Vector({
   // Mountain layers - track loaded and visible layers
 const mountainLayers = {}; // store all loaded layers
 const visibleLayers = new Set(); // track which layers are currently visible
+let layerZIndexCounter = 100; // Start mountain layers at z-index 100
 
 const createMountainLayer = (layerName) => {
   if(mountainLayers[layerName]) {
@@ -193,6 +194,8 @@ const createMountainLayer = (layerName) => {
     if (!isVisible) {
       visibleLayers.add(layerName);
       console.log('Showed layer:', layerName);
+      // When re-showing a layer, give it the highest z-index
+      layer.setZIndex(++layerZIndexCounter);
       // Zoom to this layer's extent
       zoomToLayerExtent(layer);
     } else {
@@ -214,14 +217,15 @@ const createMountainLayer = (layerName) => {
     source: vectorSource,
     style: new ol.style.Style({
       image: new ol.style.Circle({ radius: 4, fill: new ol.style.Fill({ color }), stroke: new ol.style.Stroke({ color:'#fff', width:1 }) })
-    })
+    }),
+    zIndex: ++layerZIndexCounter // Assign incrementing z-index so last added is on top
   });
 
   mountainLayers[layerName] = layer;
   visibleLayers.add(layerName);
   map.addLayer(layer);
   updateDropdownOptions();
-  console.log('Added layer:', layerName);
+  console.log('Added layer:', layerName, 'with z-index:', layerZIndexCounter);
   
   // Zoom to this layer's extent
   zoomToLayerExtent(layer);
@@ -234,6 +238,7 @@ const selectAllLayers = () => {
       if (mountainLayers[layerName]) {
         // Layer exists but is hidden
         mountainLayers[layerName].setVisible(true);
+        mountainLayers[layerName].setZIndex(++layerZIndexCounter); // Update z-index
         visibleLayers.add(layerName);
       } else {
         // Layer doesn't exist, create it (but don't call updateDropdownOptions inside)
@@ -247,7 +252,8 @@ const selectAllLayers = () => {
           source: vectorSource,
           style: new ol.style.Style({
             image: new ol.style.Circle({ radius: 4, fill: new ol.style.Fill({ color }), stroke: new ol.style.Stroke({ color:'#fff', width:1 }) })
-          })
+          }),
+          zIndex: ++layerZIndexCounter // Assign incrementing z-index
         });
 
         mountainLayers[layerName] = layer;
