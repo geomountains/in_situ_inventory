@@ -103,9 +103,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Helper to generate a random color
-  const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16);
-
 // Define world extent in Web Mercator
 const worldExtent = ol.proj.transformExtent([-195, -85, 195, 85], 'EPSG:4326', 'EPSG:3857');
 
@@ -184,6 +181,141 @@ const mountainLayers = {}; // store all loaded layers
 const visibleLayers = new Set(); // track which layers are currently visible
 let layerZIndexCounter = 100; // Start mountain layers at z-index 100
 
+// Layer names
+const layerNames = [
+  'ACTRIS','African_Mountain_Research_Foundation','Alpine_Convention_Air_Quality','Ausangate','BMKG_Indonesia',
+  'CAMELS_AUS','CAMELS_BR','CAMELS_CH','CAMELS_CL','CAMELS_DE','CAMELS_ES','CAMELS_GB','CAMELS_IND','CAMELS_SE',
+  'CAMELS_FR','CAMON','CA_Discharge','CH_Q_Private_and_Cantonal','CODOS','COSMOS_Europe','Canada_Climate',
+  'Canada_Hydrometric','Central_Sierra_Snow_Laboratory','China_High_Elevation_Stations','DEIMS_SDR','DHM_Nepal',
+  'DMC_Chile','EEAR_Clim','EUROPAREGION_EUREGIO','Ethiopian_Meteorological_Institute','FLUXNET_2015','GAW','GHCNd','GHCNh',
+  'GLORIA_Andes','GLORIA_Great_Basin','GRDC','GWF_Observatories','Heihe_River_Basin',
+  'Hemp_and_Hemp_2024_Tanzania_Precipitation','IANIGLA','ICOS','IDEAM_Colombia','IMIS_CH','INARCH','JALPS',
+  'JMA_Japan','Kaligandaki','Kenya_Kimutai_Data_Rescue','Lake_OHara','Langtang','MIREN','MPRC','Mammoth_Mountain',
+  'Mount_Lebanon','Mount_Mansfield','Moussala','Mt_Blanc','Mt_Fuji','Mt_Washington','NEON','NEON_Plots','NIWA_New_Zealand',
+  'National_Geographic_Everest','NevCAN','Niwot_Ridge','OSCAR_Surface','Other_USA','PMD_Pakistan','PatagoniaMet',
+  'Pepin_Kilimanjaro','Peru_Glaciers','Poleka_Kasue','Pyramid','Red_de_Bosques_Andinos','S2S','SCAN','SENAMHI_Peru',
+  'SLF_Manual','SNOTEL','SNOTEL_Transitional','SNOW','SNOWCOP','Sagehen_Creek','Samways_et_al_2024','Skalnate_Pleso',
+  'SoilTemp','TAHMO','TORP','Tibet_Grasslands_Carbon','Tibet_Soil_Moisture','Tibetan_Plateau_Permafrost',
+  'Tuolumne_and_Merced','UCNRS','USGS','Upper_Susitna','VAO','WGMS_In_Situ_Mass_Balance','Wasatch','White_Mountain','Wolverton'
+];
+
+// 101 highly distinct, vibrant colors
+const layerColors = {
+  'ACTRIS': '#FF0000',
+  'African_Mountain_Research_Foundation': '#00FF00',
+  'Alpine_Convention_Air_Quality': '#0000FF',
+  'Ausangate': '#FFFF00',
+  'BMKG_Indonesia': '#FF00FF',
+  'CAMELS_AUS': '#00FFFF',
+  'CAMELS_BR': '#FF8000',
+  'CAMELS_CH': '#8000FF',
+  'CAMELS_CL': '#80FF00',
+  'CAMELS_DE': '#FF0080',
+  'CAMELS_ES': '#0080FF',
+  'CAMELS_GB': '#FF8080',
+  'CAMELS_IND': '#80FF80',
+  'CAMELS_SE': '#8080FF',
+  'CAMELS_FR': '#FFFF80',
+  'CAMON': '#FF80FF',
+  'CA_Discharge': '#80FFFF',
+  'CH_Q_Private_and_Cantonal': '#FF4000',
+  'CODOS': '#4000FF',
+  'COSMOS_Europe': '#40FF00',
+  'Canada_Climate': '#FF0040',
+  'Canada_Hydrometric': '#0040FF',
+  'Central_Sierra_Snow_Laboratory': '#FF4040',
+  'China_High_Elevation_Stations': '#40FF40',
+  'DEIMS_SDR': '#4040FF',
+  'DHM_Nepal': '#FFFF40',
+  'DMC_Chile': '#FF40FF',
+  'EEAR_Clim': '#40FFFF',
+  'EUROPAREGION_EUREGIO': '#FF8040',
+  'Ethiopian_Meteorological_Institute': '#8040FF',
+  'FLUXNET_2015': '#80FF40',
+  'GAW': '#FF4080',
+  'GHCNd': '#4080FF',
+  'GHCNh': '#FFC000',
+  'GLORIA_Andes': '#C000FF',
+  'GLORIA_Great_Basin': '#C0FF00',
+  'GRDC': '#FF00C0',
+  'GWF_Observatories': '#00C0FF',
+  'Heihe_River_Basin': '#FFC0C0',
+  'Hemp_and_Hemp_2024_Tanzania_Precipitation': '#C0FFC0',
+  'IANIGLA': '#C0C0FF',
+  'ICOS': '#FFFFC0',
+  'IDEAM_Colombia': '#FFC0FF',
+  'IMIS_CH': '#C0FFFF',
+  'INARCH': '#FF6000',
+  'JALPS': '#6000FF',
+  'JMA_Japan': '#60FF00',
+  'Kaligandaki': '#FF0060',
+  'Kenya_Kimutai_Data_Rescue': '#0060FF',
+  'Lake_OHara': '#FF6060',
+  'Langtang': '#60FF60',
+  'MIREN': '#6060FF',
+  'MPRC': '#FFFF60',
+  'Mammoth_Mountain': '#FF60FF',
+  'Mount_Lebanon': '#60FFFF',
+  'Mount_Mansfield': '#FFA000',
+  'Moussala': '#A000FF',
+  'Mt_Blanc': '#A0FF00',
+  'Mt_Fuji': '#FF00A0',
+  'Mt_Washington': '#00A0FF',
+  'NEON': '#FFA0A0',
+  'NEON_Plots': '#A0FFA0',
+  'NIWA_New_Zealand': '#A0A0FF',
+  'National_Geographic_Everest': '#FFFFA0',
+  'NevCAN': '#FFA0FF',
+  'Niwot_Ridge': '#A0FFFF',
+  'OSCAR_Surface': '#FF2000',
+  'Other_USA': '#2000FF',
+  'PMD_Pakistan': '#20FF00',
+  'PatagoniaMet': '#FF0020',
+  'Pepin_Kilimanjaro': '#0020FF',
+  'Peru_Glaciers': '#FF2020',
+  'Poleka_Kasue': '#20FF20',
+  'Pyramid': '#2020FF',
+  'Red_de_Bosques_Andinos': '#FFFF20',
+  'S2S': '#FF20FF',
+  'SCAN': '#20FFFF',
+  'SENAMHI_Peru': '#FFE000',
+  'SLF_Manual': '#E000FF',
+  'SNOTEL': '#E0FF00',
+  'SNOTEL_Transitional': '#FF00E0',
+  'SNOW': '#00E0FF',
+  'SNOWCOP': '#FFE0E0',
+  'Sagehen_Creek': '#E0FFE0',
+  'Samways_et_al_2024': '#E0E0FF',
+  'Skalnate_Pleso': '#FFFFE0',
+  'SoilTemp': '#FFE0FF',
+  'TAHMO': '#E0FFFF',
+  'TORP': '#FF1000',
+  'Tibet_Grasslands_Carbon': '#1000FF',
+  'Tibet_Soil_Moisture': '#10FF00',
+  'Tibetan_Plateau_Permafrost': '#FF0010',
+  'Tuolumne_and_Merced': '#0010FF',
+  'UCNRS': '#FF1010',
+  'USGS': '#10FF10',
+  'Upper_Susitna': '#1010FF',
+  'VAO': '#FFFF10',
+  'WGMS_In_Situ_Mass_Balance': '#FF10FF',
+  'Wasatch': '#10FFFF',
+  'White_Mountain': '#FF7000',
+  'Wolverton': '#7000FF',
+  // Additional colors to reach 101
+  'Extra1': '#70FF00',
+  'Extra2': '#FF0070',
+  'Extra3': '#0070FF',
+  'Extra4': '#FF7070',
+  'Extra5': '#70FF70',
+  'Extra6': '#7070FF',
+  'Extra7': '#FFFF70',
+  'Extra8': '#FF70FF',
+  'Extra9': '#70FFFF',
+  'Extra10': '#FF3000',
+  'Extra11': '#3000FF'
+};
+
 const createMountainLayer = (layerName) => {
   if(mountainLayers[layerName]) {
     // Layer already exists, toggle visibility
@@ -212,7 +344,7 @@ const createMountainLayer = (layerName) => {
     format: new ol.format.GeoJSON()
   });
 
-  const color = randomColor();
+  const color = layerColors[layerName] || '#FF0000'; // Use predefined color or fallback to red
   const layer = new ol.layer.Vector({
     source: vectorSource,
     style: new ol.style.Style({
@@ -247,7 +379,7 @@ const selectAllLayers = () => {
           format: new ol.format.GeoJSON()
         });
 
-        const color = layerColors[layerName] || '#FF0000'; // Fallback to red if color not found
+        const color = layerColors[layerName] || '#FF0000'; // Use predefined color or fallback to red
         const layer = new ol.layer.Vector({
           source: vectorSource,
           style: new ol.style.Style({
@@ -281,23 +413,6 @@ const hideAllLayers = () => {
 };
 
   // Dropdown
-  const layerNames = [
-    'ACTRIS','African_Mountain_Research_Foundation','Alpine_Convention_Air_Quality','Ausangate','BMKG_Indonesia',
-    'CAMELS_AUS','CAMELS_BR','CAMELS_CH','CAMELS_CL','CAMELS_DE','CAMELS_ES','CAMELS_GB','CAMELS_IND','CAMELS_SE',
-    'CAMELS_FR','CAMON','CA_Discharge','CH_Q_Private_and_Cantonal','CODOS','COSMOS_Europe','Canada_Climate',
-    'Canada_Hydrometric','Central_Sierra_Snow_Laboratory','China_High_Elevation_Stations','DEIMS_SDR','DHM_Nepal',
-    'DMC_Chile','EEAR_Clim','EUROPAREGION_EUREGIO','Ethiopian_Meteorological_Institute','FLUXNET_2015','GAW','GHCNd','GHCNh',
-    'GLORIA_Andes','GLORIA_Great_Basin','GRDC','GWF_Observatories','Heihe_River_Basin',
-    'Hemp_and_Hemp_2024_Tanzania_Precipitation','IANIGLA','ICOS','IDEAM_Colombia','IMIS_CH','INARCH','JALPS',
-    'JMA_Japan','Kaligandaki','Kenya_Kimutai_Data_Rescue','Lake_OHara','Langtang','MIREN','MPRC','Mammoth_Mountain',
-    'Mount_Lebanon','Mount_Mansfield','Moussala','Mt_Blanc','Mt_Fuji','Mt_Washington','NEON','NEON_Plots','NIWA_New_Zealand',
-    'National_Geographic_Everest','NevCAN','Niwot_Ridge','OSCAR_Surface','Other_USA','PMD_Pakistan','PatagoniaMet',
-    'Pepin_Kilimanjaro','Peru_Glaciers','Poleka_Kasue','Pyramid','Red_de_Bosques_Andinos','S2S','SCAN','SENAMHI_Peru',
-    'SLF_Manual','SNOTEL','SNOTEL_Transitional','SNOW','SNOWCOP','Sagehen_Creek','Samways_et_al_2024','Skalnate_Pleso',
-    'SoilTemp','TAHMO','TORP','Tibet_Grasslands_Carbon','Tibet_Soil_Moisture','Tibetan_Plateau_Permafrost',
-    'Tuolumne_and_Merced','UCNRS','USGS','Upper_Susitna','VAO','WGMS_In_Situ_Mass_Balance','Wasatch','White_Mountain','Wolverton'
-  ];
-
   const layerSelect = document.getElementById('layer-select');
   layerNames.forEach(name => {
     const option = document.createElement('option');
