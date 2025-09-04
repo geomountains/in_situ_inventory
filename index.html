@@ -247,7 +247,7 @@ const selectAllLayers = () => {
           format: new ol.format.GeoJSON()
         });
 
-        const color = randomColor();
+        const color = layerColors[layerName] || '#FF0000'; // Fallback to red if color not found
         const layer = new ol.layer.Vector({
           source: vectorSource,
           style: new ol.style.Style({
