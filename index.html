@@ -432,7 +432,7 @@ const updateDropdownOptions = () => {
     const option = document.createElement('option');
     option.value = name;
     const isVisible = visibleLayers.has(name);
-    option.textContent = (isVisible ? '✓ ' : '') + name.replace(/_/g, ' ');
+    option.textContent = (isVisible ? '✓ ' : '') + formatLayerName(name);
     layerSelect.appendChild(option);
   });
   
