@@ -201,118 +201,118 @@ const layerNames = [
 
 // 101 maximally distinct colors including blacks, greys, beiges, creams, and vibrant colors
 const layerColors = {
-  'ACTRIS': '#FF0000',
-  'African_Mountain_Research_Foundation': '#00FF00',
-  'Alpine_Convention_Air_Quality': '#0000FF',
-  'Ausangate': '#FFFF00',
-  'BMKG_Indonesia': '#FF00FF',
-  'CAMELS_AUS': '#00FFFF',
-  'CAMELS_BR': '#000000',
-  'CAMELS_CH': '#FFFFFF',
-  'CAMELS_CL': '#808080',
-  'CAMELS_DE': '#404040',
-  'CAMELS_ES': '#C0C0C0',
-  'CAMELS_GB': '#606060',
-  'CAMELS_IND': '#202020',
-  'CAMELS_SE': '#A0A0A0',
-  'CAMELS_FR': '#FF8000',
-  'CAMON': '#8000FF',
-  'CA_Discharge': '#80FF00',
-  'CH_Q_Private_and_Cantonal': '#FF0080',
-  'CODOS': '#0080FF',
-  'COSMOS_Europe': '#800000',
-  'Canada_Climate': '#008000',
-  'Canada_Hydrometric': '#000080',
-  'Central_Sierra_Snow_Laboratory': '#808000',
-  'China_High_Elevation_Stations': '#800080',
-  'DEIMS_SDR': '#008080',
-  'DHM_Nepal': '#F5F5DC',
-  'DMC_Chile': '#FFE4B5',
-  'EEAR_Clim': '#DDBEA9',
-  'EUROPAREGION_EUREGIO': '#F5DEB3',
-  'Ethiopian_Meteorological_Institute': '#D2B48C',
-  'FLUXNET_2015': '#BC9A6A',
-  'GAW': '#A0522D',
-  'GHCNd': '#8B4513',
-  'GHCNh': '#DDA0DD',
-  'GLORIA_Andes': '#DA70D6',
-  'GLORIA_Great_Basin': '#BA55D3',
-  'GRDC': '#9932CC',
-  'GWF_Observatories': '#8B008B',
-  'Heihe_River_Basin': '#FF1493',
-  'Hemp_and_Hemp_2024_Tanzania_Precipitation': '#DC143C',
-  'IANIGLA': '#B22222',
-  'ICOS': '#8B0000',
-  'IDEAM_Colombia': '#FF4500',
-  'IMIS_CH': '#FF6347',
-  'INARCH': '#FFA500',
-  'JALPS': '#FFD700',
-  'JMA_Japan': '#ADFF2F',
-  'Kaligandaki': '#7FFF00',
-  'Kenya_Kimutai_Data_Rescue': '#32CD32',
-  'Lake_OHara': '#00FA54',
-  'Langtang': '#228B22',
-  'MIREN': '#006400',
-  'MPRC': '#00CED1',
-  'Mammoth_Mountain': '#40E0D0',
-  'Mount_Lebanon': '#48D1CC',
-  'Mount_Mansfield': '#00BFFF',
-  'Moussala': '#1E90FF',
-  'Mt_Blanc': '#6495ED',
-  'Mt_Fuji': '#4169E1',
-  'Mt_Washington': '#0000CD',
-  'NEON': '#00008B',
-  'NEON_Plots': '#4B0082',
-  'NIWA_New_Zealand': '#9400D3',
-  'National_Geographic_Everest': '#FF69B4',
-  'NevCAN': '#FF1493',
-  'Niwot_Ridge': '#C71585',
-  'OSCAR_Surface': '#DB7093',
-  'Other_USA': '#F0E68C',
-  'PMD_Pakistan': '#EEE8AA',
-  'PatagoniaMet': '#F0E68C',
-  'Pepin_Kilimanjaro': '#BDB76B',
-  'Peru_Glaciers': '#DAA520',
-  'Poleka_Kasue': '#B8860B',
-  'Pyramid': '#CD853F',
-  'Red_de_Bosques_Andinos': '#D2691E',
-  'S2S': '#A0522D',
-  'SCAN': '#8B4513',
-  'SENAMHI_Peru': '#CD5C5C',
-  'SLF_Manual': '#F08080',
-  'SNOTEL': '#FA8072',
-  'SNOTEL_Transitional': '#E9967A',
-  'SNOW': '#FFA07A',
-  'SNOWCOP': '#FF7F50',
-  'Sagehen_Creek': '#FF6347',
-  'Samways_et_al_2024': '#20B2AA',
-  'Skalnate_Pleso': '#008B8B',
-  'SoilTemp': '#5F9EA0',
-  'TAHMO': '#708090',
-  'TORP': '#778899',
-  'Tibet_Grasslands_Carbon': '#B0C4DE',
-  'Tibet_Soil_Moisture': '#87CEEB',
-  'Tibetan_Plateau_Permafrost': '#87CEFA',
-  'Tuolumne_and_Merced': '#ADD8E6',
-  'UCNRS': '#E0FFFF',
-  'USGS': '#F0FFFF',
-  'Upper_Susitna': '#F5FFFA',
-  'VAO': '#F0FFF0',
-  'WGMS_In_Situ_Mass_Balance': '#FAEBD7',
-  'Wasatch': '#FAF0E6',
-  'White_Mountain': '#FFF8DC',
-  'Wolverton': '#FFEBCD',
-  'Extra1': '#FFE4E1',
-  'Extra2': '#FFDAB9',
-  'Extra3': '#FFEFD5',
-  'Extra4': '#FDF5E6',
-  'Extra5': '#F5F5F5',
-  'Extra6': '#DCDCDC',
-  'Extra7': '#D3D3D3',
-  'Extra8': '#C0C0C0',
-  'Extra9': '#B0B0B0',
-  'Extra10': '#909090',
-  'Extra11': '#696969'
+'ACTRIS': '#FF0000',                                    // Pure Red
+  'African_Mountain_Research_Foundation': '#00FF00',      // Pure Green
+  'Alpine_Convention_Air_Quality': '#0000FF',            // Pure Blue
+  'Ausangate': '#FFFF00',                                // Pure Yellow
+  'BMKG_Indonesia': '#FF00FF',                           // Pure Magenta
+  'CAMELS_AUS': '#00FFFF',                               // Pure Cyan
+  'CAMELS_BR': '#FF8000',                                // Orange
+  'CAMELS_CH': '#8000FF',                                // Purple
+  'CAMELS_CL': '#80FF00',                                // Lime Green
+  'CAMELS_DE': '#FF0080',                                // Deep Pink
+  'CAMELS_ES': '#0080FF',                                // Azure
+  'CAMELS_GB': '#800000',                                // Maroon
+  'CAMELS_IND': '#008000',                               // Dark Green
+  'CAMELS_SE': '#000080',                                // Navy
+  'CAMELS_FR': '#808000',                                // Olive
+  'CAMON': '#800080',                                    // Purple (Dark)
+  'CA_Discharge': '#008080',                             // Teal
+  'CH_Q_Private_and_Cantonal': '#FF4000',               // Red Orange
+  'CODOS': '#4000FF',                                    // Blue Violet
+  'COSMOS_Europe': '#40FF00',                            // Bright Green
+  'Canada_Climate': '#FF0040',                           // Rose
+  'Canada_Hydrometric': '#0040FF',                       // Royal Blue
+  'Central_Sierra_Snow_Laboratory': '#400080',           // Indigo
+  'China_High_Elevation_Stations': '#804000',           // Brown
+  'DEIMS_SDR': '#008040',                                // Forest Green
+  'DHM_Nepal': '#FF8040',                                // Coral
+  'DMC_Chile': '#8040FF',                                // Blue Purple
+  'EEAR_Clim': '#40FF80',                                // Spring Green
+  'EUROPAREGION_EUREGIO': '#FF4080',                     // Hot Pink
+  'Ethiopian_Meteorological_Institute': '#4080FF',       // Cornflower Blue
+  'FLUXNET_2015': '#C00000',                             // Dark Red
+  'GAW': '#00C000',                                      // Green
+  'GHCNd': '#0000C0',                                    // Medium Blue
+  'GHCNh': '#C0C000',                                    // Dark Yellow
+  'GLORIA_Andes': '#C000C0',                             // Dark Magenta
+  'GLORIA_Great_Basin': '#00C0C0',                       // Dark Cyan
+  'GRDC': '#FF6000',                                     // Orange Red
+  'GWF_Observatories': '#6000FF',                        // Electric Blue
+  'Heihe_River_Basin': '#60FF00',                        // Chartreuse
+  'Hemp_and_Hemp_2024_Tanzania_Precipitation': '#FF0060', // Deep Rose
+  'IANIGLA': '#0060FF',                                  // Azure Blue
+  'ICOS': '#600080',                                     // Dark Purple
+  'IDEAM_Colombia': '#806000',                           // Dark Orange
+  'IMIS_CH': '#008060',                                  // Teal Green
+  'INARCH': '#FFA000',                                   // Amber
+  'JALPS': '#A000FF',                                    // Electric Purple
+  'JMA_Japan': '#A0FF00',                                // Yellow Green
+  'Kaligandaki': '#FF00A0',                              // Fuchsia
+  'Kenya_Kimutai_Data_Rescue': '#00A0FF',                // Sky Blue
+  'Lake_OHara': '#A00080',                               // Dark Magenta Red
+  'Langtang': '#80A000',                                 // Yellow Olive
+  'MIREN': '#00A080',                                    // Teal Blue
+  'MPRC': '#FF2000',                                     // Scarlet
+  'Mammoth_Mountain': '#2000FF',                         // Electric Blue
+  'Mount_Lebanon': '#20FF00',                            // Electric Green
+  'Mount_Mansfield': '#FF0020',                          // Crimson
+  'Moussala': '#0020FF',                                 // Pure Blue
+  'Mt_Blanc': '#200080',                                 // Midnight Blue
+  'Mt_Fuji': '#802000',                                  // Dark Red
+  'Mt_Washington': '#008020',                            // Dark Green
+  'NEON': '#FFC000',                                     // Gold
+  'NEON_Plots': '#C000FF',                               // Electric Violet
+  'NIWA_New_Zealand': '#C0FF00',                         // Lime
+  'National_Geographic_Everest': '#FF00C0',              // Bright Magenta
+  'NevCAN': '#00C0FF',                                   // Deep Sky Blue
+  'Niwot_Ridge': '#C00080',                              // Dark Pink
+  'OSCAR_Surface': '#80C000',                            // Olive Green
+  'Other_USA': '#00C080',                                // Teal
+  'PMD_Pakistan': '#FF4040',                             // Light Red
+  'PatagoniaMet': '#4040FF',                             // Medium Blue
+  'Pepin_Kilimanjaro': '#40FF40',                        // Lime Green
+  'Peru_Glaciers': '#FF40FF',                            // Bright Magenta
+  'Poleka_Kasue': '#40FFFF',                             // Light Cyan
+  'Pyramid': '#FFFF40',                                  // Light Yellow
+  'Red_de_Bosques_Andinos': '#404040',                   // Dark Gray
+  'S2S': '#E00000',                                      // Bright Red
+  'SCAN': '#00E000',                                     // Bright Green
+  'SENAMHI_Peru': '#0000E0',                             // Bright Blue
+  'SLF_Manual': '#E0E000',                               // Bright Yellow
+  'SNOTEL': '#E000E0',                                   // Bright Magenta
+  'SNOTEL_Transitional': '#00E0E0',                      // Bright Cyan
+  'SNOW': '#E08000',                                     // Dark Orange
+  'SNOWCOP': '#8000E0',                                  // Dark Purple
+  'Sagehen_Creek': '#80E000',                            // Yellow Green
+  'Samways_et_al_2024': '#E00080',                       // Deep Pink
+  'Skalnate_Pleso': '#0080E0',                           // Light Blue
+  'SoilTemp': '#808080',                                 // Gray
+  'TAHMO': '#E04000',                                    // Red Orange
+  'TORP': '#4000E0',                                     // Blue Violet
+  'Tibet_Grasslands_Carbon': '#40E000',                  // Bright Green
+  'Tibet_Soil_Moisture': '#E00040',                      // Rose Red
+  'Tibetan_Plateau_Permafrost': '#0040E0',               // Medium Blue
+  'Tuolumne_and_Merced': '#E0E080',                      // Khaki
+  'UCNRS': '#E080E0',                                    // Plum
+  'USGS': '#80E0E0',                                     // Powder Blue
+  'Upper_Susitna': '#E08080',                            // Light Coral
+  'VAO': '#80E080',                                      // Light Green
+  'WGMS_In_Situ_Mass_Balance': '#8080E0',                // Light Blue
+  'Wasatch': '#F00000',                                  // Red
+  'White_Mountain': '#00F000',                           // Green
+  'Wolverton': '#0000F0',                                // Blue
+  'Extra1': '#F0F000',                                   // Yellow
+  'Extra2': '#F000F0',                                   // Magenta
+  'Extra3': '#00F0F0',                                   // Cyan
+  'Extra4': '#F08000',                                   // Orange
+  'Extra5': '#8000F0',                                   // Purple
+  'Extra6': '#80F000',                                   // Lime
+  'Extra7': '#F00080',                                   // Pink
+  'Extra8': '#0080F0',                                   // Light Blue
+  'Extra9': '#808000',                                   // Olive (different shade)
+  'Extra10': '#800000',                                  // Maroon (different shade)
+  'Extra11': '#008000'                                   // Green (different shade)
 };
 
 const createMountainLayer = (layerName) => {
