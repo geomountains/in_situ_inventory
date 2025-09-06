@@ -411,12 +411,12 @@ const hideAllLayers = () => {
   console.log('Hidden all layers');
 };
 
-  // Dropdown - initial population
+  // Dropdown
   const layerSelect = document.getElementById('layer-select');
   layerNames.forEach(name => {
     const option = document.createElement('option');
     option.value = name;
-    option.textContent = formatLayerName(name);
+    option.textContent = name.replace(/_/g, ' ');
     layerSelect.appendChild(option);
   });
 
